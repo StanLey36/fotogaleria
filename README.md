@@ -1,0 +1,2 @@
+# fotogaleria
+Zadanie Bart sk
