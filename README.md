@@ -1,5 +1,5 @@
 # fotogaleria
-Zadanie Bart sk
+Zadanie 
 
 
 1.  Index.html je hlavný HTML súbor - home page
@@ -12,4 +12,6 @@ Zadanie Bart sk
 
 5.  V tomto súbore je možné priložiť fotku formou výberu súboru alebo drag&drop
 
-6.  Kliknutím na fotku sa zobrazí overlay lightbox 
+6.  Kliknutím na fotku sa zobrazí overlay lightbox
+
+7.  (Lightbox sa mi nepodarilo dorobiť, mám len štruktúru)
