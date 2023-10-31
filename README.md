@@ -14,4 +14,5 @@ Zadanie
 
 6.  Kliknutím na fotku sa zobrazí overlay lightbox
 
-7.  (Lightbox sa mi nepodarilo dorobiť, mám len štruktúru)
+7.  Lightbox zobrazuje obrázky uložené v kategórii
+
