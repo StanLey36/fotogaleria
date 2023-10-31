@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;$font-type-weight;700&display=swap');
+
+//font
+$font-type: 'Barlow', sans-serif;
+$font-type-weight: 500;
+
+//colors
+$color-dark: #000;
+$color-light: #fff;
+$card-shadow-color: #c6c6c6e6;
+$card-photo-indicator-bg-color: #00000052;
+$card-title-color: #333;
+$create-category-button-color: #f1f1f1;
+$create-category-button-hover: #aeaeae;
+
+//items sizes
+$max-wrapper-width: 68.25rem;
+
+//px sizes
+$double-rem: 2rem;
+$rem: 1rem;
+$half-rem: .5rem;
+$quart-rem: .25rem;
+
+//others
+$half-percent: 50%;
+$full-percent: 100%;
+$cards-in-grid: 4;
+
+@mixin positioning($style, $top, $left){
+    position: $style;
+    top: $top;
+    left: $left;
+}
+
+body {
+    font-family: $font-type;
+}
+
+h1 {
+    font-weight: $font-type-weight;
+    text-align: left;
+    letter-spacing: 0px;
+    color: $color-dark;
+    opacity: 1;
+}
+
+#link-or-title {
+    font-weight: $font-type-weight;
+    margin-bottom: calc(#{$double-rem} - .125rem); 
+
+    a:visited {
+        color: #000;
+    }
+}
+
+.wrapper {
+    max-width: $max-wrapper-width;
+    min-width: 12.5rem;
+    position: relative;
+    margin: auto;
+    padding: 5% 0; // Adjust padding according to your requirements
+  
+    .grid-container {
+      max-width: $max-wrapper-width;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 16rem));
+      gap: $rem;
+      margin: 0 auto;
+      padding: $half-rem 0; // Adjust padding according to your requirements
+    }
+  
+    @media (max-width: calc(#{$half-rem * 156.25})) {
+      max-width: calc(#{$half-rem * 102.5});
+      
+
+      .grid-container {
+        grid-template-columns: repeat($cards-in-grid - 1, 1fr);
+        max-width: calc(#{$half-rem*102.5});
+    }
+
+    }
+  
+    @media (max-width: calc(#{$half-rem * 125})) {
+      max-width: calc(#{$quart-rem * 137.5});
+      padding-top: minmax(10%,12%);
+      padding-bottom: 10%;
+
+      .grid-container {
+        grid-template-columns: 1fr 1fr;
+        max-width: calc(#{$quart-rem*137.5});
+    }
+    }
+  
+    @media (max-width: calc(#{$quart-rem * 175})) {
+      max-width: calc(#{$half-rem * 35});
+      padding-top: 10%;
+      padding-bottom: 10%;
+
+      .grid-container {
+        grid-template-columns: 1fr;
+        max-width: calc(#{$half-rem*35});
+    }
+    }
+  
+    @media (max-width: calc(#{$half-rem * 41})) {
+      max-width: calc(#{$quart-rem * 47.5});
+      padding-top: 10%;
+      padding-bottom: 10%;
+      
+      .grid-container {
+        grid-template-columns: 1fr;
+        max-width: calc(#{$quart-rem*47.5});
+        }
+        .card {
+            width: calc(#{$rem*10} + 1.875rem);
+            height: calc(#{$rem*10} + 1.875rem);
+            background-color: $color-light;
+            border-radius: $half-rem;
+            box-shadow: calc(#{$quart-rem/2}) calc(#{$quart-rem/2}) calc(#{$rem+$quart-rem}) .0156rem $card-shadow-color;
+            aspect-ratio: 1/1;  
+        }
+
+        .card_title {
+            font-size: calc(#{$rem} - .1rem);
+        }
+    }
+  }
+
+.card {
+    width: calc(#{$rem*16});
+    height: calc(#{$rem*15});
+    background-color: $color-light;
+    border-radius: $quart-rem;
+    box-shadow: calc(#{$quart-rem/2}) calc(#{$quart-rem/2}) calc(#{$rem+$quart-rem}) .0156rem $card-shadow-color;
+    aspect-ratio: 1/1;  
+    position: relative;
+
+    span {
+        @include positioning(absolute, .75rem, .75rem);
+        padding: $quart-rem calc(#{$rem} - #{$quart-rem});
+        background-color: $card-photo-indicator-bg-color;
+        color: $color-light;
+        font-size: calc(#{$rem} - #{$quart-rem});
+        border-radius: calc(#{$rem} - #{$quart-rem});
+    }
+
+    img {
+        width: $full-percent;
+        height: 80%;
+        object-fit: cover;
+        border-radius: $quart-rem $quart-rem 0 0;
+    }
+}
+
+.card_body {
+    padding: $half-rem calc(#{$half-rem} - .125rem);;
+}
+
+.card_title {
+    text-align: center;
+    margin: 0;
+    font-size: $rem;
+    font-weight: $font-type-weight;
+    color: $card-title-color;
+}
+
+.create-card {
+    position: relative;
+}
+
+.create-category-tile {
+    width: $full-percent;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    @include positioning(absolute, $half-percent,$half-percent);
+    transform: translate(-$half-percent, -$half-percent);
+    padding: calc(#{$half-rem} + .125rem) $rem;
+
+    p {
+        padding: calc(#{$half-rem} + .125rem) $rem;
+        margin: 0;
+    }
+
+    button {
+        padding: calc(#{$half-rem} + .125rem) $rem;
+        background-color: $color-light;
+        border: calc(#{$quart-rem / 2}) solid $create-category-button-color;
+        border-radius: calc(#{$half-rem} + .125rem);
+        color: $create-category-button-color;
+        font-size: calc(#{$quart-rem} + #{$rem});
+        transition: all 0.7s;
+
+        &:hover {
+            border: calc(#{$quart-rem / 2} + .0313rem) solid $create-category-button-hover;
+            color: $create-category-button-hover;
+            transition: all 0.7s;
+            cursor: pointer;
+        }
+    }
+
+    
+}
+
+#overlay {
+    @include positioning(fixed, 0, 0);
+    width: $full-percent;
+    height: $full-percent;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#submitButton {
+    background: $color-dark;
+    width: $full-percent;
+    border-radius: $quart-rem;
+    padding: calc(#{$rem} - .0625rem);
+    color: $color-light;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+@media (max-width: calc(#{$quart-rem*175})) {
+    
+    .grid-container {
+        grid-template-columns: 1fr;
+        max-width: calc(#{$half-rem*35});
+    }
+}
+
+@media (max-width: calc(#{$half-rem*41})) {
+    
+    .grid-container {
+        grid-template-columns: 1fr;
+        max-width: calc(#{$quart-rem*47.5});
+    }
+    .card {
+        width: calc(#{$rem*10});
+        height: calc(#{$rem*10});
+        background-color: $color-light;
+        border-radius: $half-rem;
+        box-shadow: calc(#{$quart-rem/2}) calc(#{$quart-rem/2}) calc(#{$rem+$quart-rem}) .0156rem $card-shadow-color;
+        aspect-ratio: 1/1;  
+    }
+
+    .card_title {
+        font-size: calc(#{$rem} - .1rem);
+    }
+}
+
+
+.input {
+    position: relative;
+}
+
+.input__label {
+    @include positioning(absolute, 0, 0);
+    padding: $quart-rem;
+    margin: $half-rem; 
+    white-space: nowrap;
+    transform: translate(0, 0);
+    transform-origin: 0 0;
+    background: $color-light;
+    transition: transform 120ms ease-in;
+    font-weight: $font-type-weight;
+    line-height: 1.2;
+    color: grey; 
+}
+
+.input__field {
+    box-sizing: border-box;
+    display: block;
+    width: $full-percent;
+    border: 1px solid currentColor;
+    padding: calc(#{$half-rem + $quart-rem}) $half-rem;
+    margin: 0 0 calc(#{$rem} + .1875rem);
+    color: currentColor;
+    background: transparent;
+    border-radius: $quart-rem;
+}
+
+
+.input__field:focus + .input__label, .input__field:not(:placeholder-shown) + .input__label {
+    transform: translate($quart-rem, -65%) scale(0.8);
+    color: $color-dark;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: $color-light;
+    max-width: calc(#{$rem*35});
+    margin: 0 auto calc(#{$quart-rem*25});
+    padding: calc(#{$quart-rem*11.25});
+    border-radius: $half-rem;
+
+    button {
+        background: $color-dark;
+        width: $full-percent;
+        border: 0;
+        border-radius: $quart-rem;
+        padding: calc(#{$rem} - .0625rem);
+        color: $color-light;
+        font-size: calc(#{$rem} - .125rem);
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+    }
+}
+.title {
+    margin: 0;
+    width: $full-percent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 calc(#{$quart-rem*11.25});
+    margin: 0 0 ;
+
+    h3 {
+        margin: 0;
+    }
+
+    p {
+        margin: 0;
+        margin-left: auto;
+    }
+}
+
+.card-l-design-width {
+    width: calc(#{$rem*35});
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+.closeOverlay:hover {
+    scale: 1.2;
+    transition: all 0.5;
+    font-weight: $font-type-weight;
+}
+
+#category-image-item {
+    width: $full-percent;
+    height: $full-percent;
+    object-fit: cover;
+    border-radius: $quart-rem;
+}
